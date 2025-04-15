@@ -1,0 +1,168 @@
+{
+com.badlogic.gdx.graphics.g2d.BitmapFont: {
+	default: {
+		file: pixelmini export.fnt
+		scaledSize: -1
+		markupEnabled: false
+		flip: false
+	}
+}
+com.badlogic.gdx.graphics.Color: {
+	DARKERGRAY: {
+		r: 0.78431374
+		g: 0.78431374
+		b: 0.78431374
+		a: 1
+	}
+	GREEN: {
+		r: 0
+		g: 0.58426964
+		b: 0
+		a: 1
+	}
+	LIGHTERGRAY: {
+		r: 0.9019608
+		g: 0.9019608
+		b: 0.9019608
+		a: 1
+	}
+	PUREWHITE: {
+		r: 1
+		g: 1
+		b: 1
+		a: 1
+	}
+	RED: {
+		r: 0.5921569
+		g: 0
+		b: 0
+		a: 1
+	}
+	RGBA_58_58_58_255: {
+		r: 0.22745098
+		g: 0.22745098
+		b: 0.22745098
+		a: 1
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Button$ButtonStyle: {
+	default: {
+		up: smallButton(up)
+		down: smallButton(down)
+		over: smallButton(up)
+		disabled: smallButton(down)
+		pressedOffsetX: -1
+		pressedOffsetY: -1
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.CheckBox$CheckBoxStyle: {
+	default: {
+		checkboxOn: Checkbox(YES)
+		checkboxOff: Checkbox(NO)
+		font: default
+		downFontColor: DARKERGRAY
+		overFontColor: LIGHTERGRAY
+		focusedFontColor: LIGHTERGRAY
+		disabledFontColor: RED
+		checkedFontColor: PUREWHITE
+		checkedDownFontColor: DARKERGRAY
+		checkedOverFontColor: LIGHTERGRAY
+		checkedFocusedFontColor: LIGHTERGRAY
+		pressedOffsetX: 2
+		unpressedOffsetX: 5
+		checkedOffsetX: 2
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ImageButton$ImageButtonStyle: {
+	default: {
+		parent: default
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton$ImageTextButtonStyle: {
+	default: {
+		parent: default
+		font: default
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Label$LabelStyle: {
+	default: {
+		font: default
+		fontColor: PUREWHITE
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ProgressBar$ProgressBarStyle: {
+	default-horizontal: {
+		background: Checkbox(NO)
+		disabledBackground: Checkbox(NO)
+		disabledKnob: Checkbox(YES)
+		disabledKnobBefore: Slider(befdore)
+		knobAfter: Checkbox(NO)
+		disabledKnobAfter: Slider(after)
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.ScrollPane$ScrollPaneStyle: {
+	default: {
+		background: smallButton(up)
+		hScrollKnob: slider(knob)
+		vScrollKnob: slider(knob)
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Slider$SliderStyle: {
+	default-horizontal: {
+		backgroundOver: slider(knob)
+		backgroundDown: slider(knob)
+		knobOver: slider(knob)
+		knobDown: slider(knob)
+		knobBeforeOver: Slider(befdore)
+		knobBeforeDown: Slider(befdore)
+		background: Slider(BG)
+		knob: slider(knob)
+		disabledKnob: slider(knob)
+		knobBefore: Slider(befdore)
+		knobAfter: Slider(after)
+		disabledKnobAfter: Slider(befdore)
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextButton$TextButtonStyle: {
+	default: {
+		parent: default
+		font: default
+		fontColor: PUREWHITE
+		downFontColor: DARKERGRAY
+		overFontColor: LIGHTERGRAY
+		focusedFontColor: LIGHTERGRAY
+		disabledFontColor: RED
+		pressedOffsetX: -1
+		pressedOffsetY: -1
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextField$TextFieldStyle: {
+	default: {
+		font: default
+		fontColor: LIGHTERGRAY
+		focusedFontColor: PUREWHITE
+		disabledFontColor: RED
+		background: smallButton(up)
+		focusedBackground: smallButton(up)
+		disabledBackground: smallButton(down)
+		cursor: Slider(after)
+		selection: Slider(after)
+		messageFont: default
+		messageFontColor: DARKERGRAY
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.TextTooltip$TextTooltipStyle: {
+	default: {
+		label: default
+		background: HoverText(BG)
+		wrapWidth: 100
+	}
+}
+com.badlogic.gdx.scenes.scene2d.ui.Window$WindowStyle: {
+	default: {
+		background: window
+		titleFont: default
+		titleFontColor: PUREWHITE
+	}
+}
+}

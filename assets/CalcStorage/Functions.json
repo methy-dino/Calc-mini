@@ -1,0 +1,19 @@
+{
+a: [
+	<0>*3-<0>
+	v
+]
+triangleArea: [
+	<0>*<1>/2
+	Height
+	Width
+]
+regHexArea: [
+	6*equilTriangleArea<<0>>
+	Side
+]
+equilTriangleArea: [
+	<0>*√3
+	Side
+]
+}

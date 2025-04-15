@@ -1,0 +1,10 @@
+{
+hexOfSideSix: {
+	class: java.lang.String
+	value: 62.353829072479584
+}
+triangleArea: {
+	class: java.lang.String
+	value: 2.0
+}
+}
