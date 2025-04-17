@@ -25,7 +25,6 @@ public class Parser implements Runnable{
   }
   //public ArrayList<String> function
   public String funcCalc(String functionName, ArrayList<String> toSwap){
-    //System.out.println("erm.... " + function);
     StringBuilder copy = new StringBuilder();
     switch (functionName) {
       case "sin":
@@ -35,7 +34,7 @@ public class Parser implements Runnable{
       case "tan":
       return measureType == 1 ? String.valueOf(Math.tan(Double.parseDouble(toSwap.get(0)))) : String.valueOf(Math.sin(Math.toRadians(Double.parseDouble(toSwap.get(0)))));
       default:
-      String func = functions.getFunc(functionName);//System.out.println("erm2.... " + toSwap.get(0).charAt(0));
+      String func = functions.getFunc(functionName);
       int prev = 0;
       for(int i = 0; i < func.length(); i++){
         if (func.charAt(i) == '<' && 47 < (int) func.charAt(i + 1) && (int) func.charAt(i + 1) < 58){
@@ -49,8 +48,6 @@ public class Parser implements Runnable{
         copy.append(func.charAt(i));
       }
     }
-    System.out.println("function result:" + func);
-    System.out.println("THIS IS THE COMPUTATION!!!!!!  " + copy.toString());
     return String.valueOf(compute(copy.toString()));
     }
 
@@ -66,7 +63,6 @@ public class Parser implements Runnable{
     int i = 0;
     boolean lastOperator = false;
     while (i < operation.length()){
-      System.out.println(i);;
       // for operators.
       if ((int) operation.charAt(i) < 48 || (int) operation.charAt(i) == 94 || (int) operation.charAt(i) > 900){
         if (operation.charAt(i) ==  'π'){
@@ -113,7 +109,6 @@ public class Parser implements Runnable{
           if (i == operation.length() - 1 && operation.charAt(i) != ')' && operation.charAt(i) != '!'){
             i++;
           }
-          System.out.println(i);
           toReturn.add(operation.substring(prev, i));
           }
         }
@@ -143,7 +138,7 @@ public class Parser implements Runnable{
           prev = i;
           if (operation.charAt(i) == '>'){
             i++;
-            break;  
+            break;
           }
           i++;
         }
@@ -179,7 +174,6 @@ public class Parser implements Runnable{
       if (i == operation.length()) break;
       // for adding numbers
       if ((47 < (int) operation.charAt(i) && (int) operation.charAt(i) < 58) || (operation.charAt(i) == '.')){
-        System.out.println(i);
         lastOperator = false;
         while (((47 < (int) operation.charAt(i) && (int) operation.charAt(i) < 58) || operation.charAt(i) == '.') && i < operation.length() - 1){
           i++;
@@ -195,7 +189,7 @@ public class Parser implements Runnable{
     }
     i = 0;
     return toReturn;
-  } 
+  }
   boolean hasOpen = false;
   public Stack<String> parse(ArrayList<String> divided) /*throws Invalid*/{
     //String[] divided = operation.split(" ");
@@ -210,7 +204,7 @@ public class Parser implements Runnable{
      }
     for (int i = 0; i < divided.size(); i++){
       //System.out.println("Pushing into solved: " + divided.get(i));
-      if ((47 < (int) divided.get(i).charAt(0) && (int) divided.get(i).charAt(0) < 58) || (divided.get(i).length() > 1 && 47 < (int) divided.get(i).charAt(1) && (int) divided.get(i).charAt(1) < 58)){  
+      if ((47 < (int) divided.get(i).charAt(0) && (int) divided.get(i).charAt(0) < 58) || (divided.get(i).length() > 1 && 47 < (int) divided.get(i).charAt(1) && (int) divided.get(i).charAt(1) < 58)){
         solved.add(divided.get(i));
       } else {
         switch (divided.get(i)){
@@ -231,7 +225,7 @@ public class Parser implements Runnable{
               String temp = operators.pop();
               //System.out.println("Pushing into solved: " + temp + " 101");
               solved.add(temp);
-              
+
               }
               operators.add(divided.get(i));
         }
@@ -273,7 +267,7 @@ public class Parser implements Runnable{
         operators.add(divided[i]);
       } else if (divided[i].indexOf("log(") != -1){
         solved.add(logCalc(divided[i]));
-      } else { 
+      } else {
         while (operators.len > 0 && getPriority(operators.get(-1)) >= getPriority(divided[i])){
           String temp = operators.pop();
               solved.add(temp);
@@ -303,11 +297,6 @@ public class Parser implements Runnable{
     double numA = 0;
     double numB = 0;
     String curr = "";
-    System.out.print("RPN: [");
-     for (int i = 0; i < RPNCalc.len; i++){
-    System.out.print(RPNCalc.get(i)+", ");
-    }
-     System.out.println("]");
      //if (RPNCalc.len < 2) return Double.parseDouble(RPNCalc.pop());
     for (int i = 0; i < RPNCalc.len; i++){
       curr = RPNCalc.get(i);
@@ -339,7 +328,7 @@ public class Parser implements Runnable{
             numA = nums.pop();
             numB = numA;
             for (int j = 1; j < numB; j++){
-              numA = numA * (numB - j); 
+              numA = numA * (numB - j);
             }
             nums.add(numA);
             break;
@@ -388,14 +377,13 @@ public class Parser implements Runnable{
           break;
         }
       }
-      
+
       //System.out.println(nums.len + " nums length");
     }
-    System.out.print("nums: [");
+
      for (int j = 0; j < nums.len; j++){
-    System.out.print(nums.get(j)+", ");
+
     }
-     System.out.println("]");
     return nums.pop();
   }
   static int getPriority(String operator){

@@ -21,7 +21,7 @@ public class AlphabetManager {
     }
     /**
      * returns a DEFINED mathematical function with readable arguments (substituting the <n> breaks).
-     * @param rawFunctionData — function data from the FnStorage. 
+     * @param rawFunctionData — function data from the FnStorage.
      * @return String — human readable math function :)
      */
     public static StringBuilder varFunction(String[] rawFunctionData){
@@ -37,7 +37,7 @@ public class AlphabetManager {
               } else {
                 manipulator.append(rawFunctionData[0].charAt(i));
               }
-        } 
+        }
         return manipulator;
 
     }

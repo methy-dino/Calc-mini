@@ -1,6 +1,7 @@
 package com.github.nameManaging;
 
 import java.util.ArrayList;
+import com.github.nameManaging.AlphabetManager;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.StringBuilder;
@@ -17,23 +18,31 @@ public class TextManager {
     public static String update(String var){
         //showUser.append("[#7f78aa]");
         prevLen = showUser.length();
+        if (unformatted.length > 0 && AlphabetManager.isNumber(unformatted.charAt(unformatted.length() - 1))){
+            unformatted.append("*");
+            showUser.append("*");
+        }
         showUser.append(var);
         //showUser.append("[]");
         unformatted.append(var);
-        return updateColors(prevLen);  
+        return updateColors(prevLen);
     }
     public static String update(CharSequence toAdd){
         prevLen = showUser.length();
-        showUser.append(toAdd); 
+        showUser.append(toAdd);
         unformatted.append(toAdd);
-        return updateColors(prevLen); 
+        return updateColors(prevLen);
     }
     public static String addFunc(String function){
         //showUser.append("[#d0a343]");
         prevLen = showUser.length();
+        if (AlphabetManager.isNumber(unformatted.charAt(unformatted.length() - 1))){
+            unformatted.append("*");
+            showUser.append("*");
+        }
         showUser.append(function);
         unformatted.append(function);
-        return updateColors(prevLen); 
+        return updateColors(prevLen);
     }
     public static String addFuncVar(int i, ArrayList<String> funcVars){
         prevLen = showUser.length();
@@ -77,7 +86,7 @@ public class TextManager {
     public static String erase(){
         if (unformatted.length == 0) return "";
         int i = unformatted.length - 1;
-        
+
         if (AlphabetManager.isValidAlphabetChar(unformatted.charAt(i))) {
 
         } else if (unformatted.charAt(i) == '>'){
@@ -85,7 +94,7 @@ public class TextManager {
             while (AlphabetManager.isNumber(unformatted.charAt(i - offset))){
                 offset++;
             }
-            if (unformatted.charAt(i - offset) == '<') { 
+            if (unformatted.charAt(i - offset) == '<') {
                 i -= offset;
             }
         }
@@ -146,7 +155,7 @@ public class TextManager {
                 while ( i < showUser.length && AlphabetManager.isValidAlphabetChar(showUser.charAt(i))) i++;
                 showUser.insert(i, "[]");
                 i += 1;
-                
+
             }
         }
         return ColorStyle.defaultColor + showUser.toString();

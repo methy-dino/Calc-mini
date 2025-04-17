@@ -627,7 +627,6 @@ public class Calc extends ApplicationAdapter {
               @Override
               public void changed(final ChangeEvent event, final Actor actor) {
                 String calculation = TextManager.getUnformatted();
-                System.out.println(calculation);
                 if (calculation.length()> 0){
                     parser.measureType = measurerPointer;
                     DecimalFormat normalNotation = new DecimalFormat("#.##");
@@ -669,12 +668,10 @@ public class Calc extends ApplicationAdapter {
          basicManager.subsequentTime = 1f;
          basicManager.resetTime = 3f;
            TextTooltip nrtTooltip = new TextTooltip("Uses the previous number as the ∜ factor to the next", basicManager, skin);
-         //a.enter(c, 100f, 100f, -1, basicMath);
          nrtTooltip.getActor().setWrap(true);
          nrtTooltip.getActor().setFontScale(Math.max(1,Math.round(skin.getFont("default").getData().scaleX / 1.4f)));
          tooltips[0] = nrtTooltip;
          TextTooltip eulerTooltip = new TextTooltip("Inserts Euler's mathematical constant", basicManager, skin);
-         //a.enter(c, 100f, 100f, -1, basicMath);
          nrtTooltip.setTouchIndependent(true);
          eulerTooltip.getActor().setWrap(true);
          tooltips[1] = eulerTooltip;
@@ -717,11 +714,8 @@ public class Calc extends ApplicationAdapter {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println(TextManager.update(""));
 
         skin = new Skin(Gdx.files.internal("ui/test.json"));
-        //System.out.println(TextManager.Update("abc"));
-        //System.out.println(TextManager.Erase());
         skin.getFont("default").getData().markupEnabled = true;
         UIInit();
 
@@ -761,12 +755,3 @@ public class Calc extends ApplicationAdapter {
         skin.dispose();
     }
 }
-//funcs.setFunc("areaTrianEqui", "<0>^2*sqrt3/4", "lado");
-        //funcs.setFunc("areaHexa", "6*areaTrianEqui<<0>>", "lado");
-        //funcs.SaveFunctions();
-        //System.out.println("start: " + System.currentTimeMillis());
-        //System.out.println("Result: " + results.compute("areatrian<15+(3*2),4>"));
-        //System.out.println("Result: " + results.compute("areaHexa<7>"));
-        //System.out.println("Result: " + results.compute("(a+b)*3*areaHexa<7>"));
-        //System.out.println("Result: " + results.compute("e+cd"));
-        //System.out.println("end: " + System.currentTimeMillis());
