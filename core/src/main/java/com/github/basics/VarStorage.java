@@ -8,7 +8,6 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Json;
 public class VarStorage{
     final private HashMap<String, String> vars;
-    //vars.put("a", "12");
     final private FileHandle file;
     final private Json json;
     final private com.badlogic.gdx.Preferences prefs;

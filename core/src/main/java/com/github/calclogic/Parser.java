@@ -38,7 +38,6 @@ public class Parser implements Runnable{
       int prev = 0;
       for(int i = 0; i < func.length(); i++){
         if (func.charAt(i) == '<' && 47 < (int) func.charAt(i + 1) && (int) func.charAt(i + 1) < 58){
-          //copy.append(function.substring(prev, i));
           prev = i + 1;
           while (func.charAt(i) != '>'){
             i++;
@@ -50,14 +49,12 @@ public class Parser implements Runnable{
     }
     return String.valueOf(compute(copy.toString()));
     }
-
   }
   /**
    * @param operation
    * @return separatedOperation
    */
   public ArrayList<String> separate(String operation){
-    //System.out.println("separate called!");
     ArrayList<String> toReturn = new ArrayList<String>();
     int prev = 0;
     int i = 0;
@@ -133,7 +130,6 @@ public class Parser implements Runnable{
             while (operation.charAt(i) != ',' && operation.charAt(i) != '>'){
             i++;
           }
-          //System.out.println("egg " + compute(operation.substring(prev+1, i)));
           converted.add(String.valueOf(compute(operation.substring(prev+1, i))));
           prev = i;
           if (operation.charAt(i) == '>'){
@@ -142,16 +138,9 @@ public class Parser implements Runnable{
           }
           i++;
         }
-        /*System.out.print("converted: [");
-        for (int j = 0; j < converted.size(); j++){
-          System.out.print(converted.get(j) + ", ");
-        }
-        System.out.println("] " + i + " length");*/
         String temp = funcCalc(fnName, converted);
-        //System.out.println("temp  " + temp);
         toReturn.add(temp);
         if (i >= operation.length() - 1){
-          //System.out.println("breakerh");
           return toReturn;
         }
         } else {
@@ -163,13 +152,10 @@ public class Parser implements Runnable{
               toReturn.add(lastAnswer);
               break;
             default:
-              //System.out.println(vars.getVar(operation.substring(prev, i)));
               toReturn.add(vars.getVar(operation.substring(prev, i)));
           }
-          //i--;
         }
         prev = i;
-        //i++;
       }
       if (i == operation.length()) break;
       // for adding numbers
@@ -181,10 +167,8 @@ public class Parser implements Runnable{
         if (i == operation.length() - 1 && operation.charAt(i) != ')' && operation.charAt(i) != '!'){
           i++;
         }
-        //System.out.println("adding number");
         toReturn.add(operation.substring(prev, i));
         prev = i;
-        //i++;
       }
     }
     i = 0;
@@ -192,18 +176,8 @@ public class Parser implements Runnable{
   }
   boolean hasOpen = false;
   public Stack<String> parse(ArrayList<String> divided) /*throws Invalid*/{
-    //String[] divided = operation.split(" ");
      Stack<String> solved = new Stack<String>(-1);
-    /*System.out.print("divided (Depth " + dep + " ): [");
-    for(int i = 0; i < divided.size(); i++){
-      System.out.print(divided.get(i)+", ");
-    }
-     System.out.println("]");*/
-     for (int i = 0; i < divided.size(); i++){
-      System.out.println("Pushing into solved: " + divided.get(i));
-     }
     for (int i = 0; i < divided.size(); i++){
-      //System.out.println("Pushing into solved: " + divided.get(i));
       if ((47 < (int) divided.get(i).charAt(0) && (int) divided.get(i).charAt(0) < 58) || (divided.get(i).length() > 1 && 47 < (int) divided.get(i).charAt(1) && (int) divided.get(i).charAt(1) < 58)){
         solved.add(divided.get(i));
       } else {
@@ -212,10 +186,8 @@ public class Parser implements Runnable{
              while (operators.len > 0 && !(operators.get(-1).equals("("))){
               String temp = operators.pop();
               solved.add(temp);
-              //System.out.println("Pushing into solved: " + temp + " 93");
             }
             operators.pop();
-            //System.out.println(operators.pop());
             break;
           case "(":
             operators.add(divided.get(i));
@@ -223,59 +195,13 @@ public class Parser implements Runnable{
           default:
             while (operators.len > 0 && getPriority(operators.get(-1)) >= getPriority(divided.get(i))){
               String temp = operators.pop();
-              //System.out.println("Pushing into solved: " + temp + " 101");
               solved.add(temp);
 
               }
               operators.add(divided.get(i));
         }
       }
-    }/*
-    for (int i = 0; i < divided.length; i++){
-      if (47 < (int) divided[i].charAt(0) && (int) divided[i].charAt(0) < 58){
-              System.out.println("Pushing into solved: " + divided[i]);
-          solved.add(divided[i]);
-      } else {
-        switch (divided[i]){
-          case ")":
-             while (operators.len > 0 && !(operators.get(-1).equals("("))){
-              String temp = operators.pop();
-              solved.add(temp);
-              System.out.println("Pushing into solved: " + temp);
-            }
-            operators.pop();
-          case "(":
-            operators.add(divided[i]);
-          default:
-            while (operators.len > 0 && getPriority(operators.get(-1)) >= getPriority(divided[i])){
-              String temp = operators.pop();
-              solved.add(temp);
-              System.out.println("Pushing into solved: " + temp);
-              }
-              operators.add(divided[i]);
-        }
-      }
-    } */
-      /*if (divided[i].equals(")")){
-        while (operators.len > 0 && !(operators.get(-1).equals("("))){
-              String temp = operators.pop();
-              solved.add(temp);
-              System.out.println("Pushing into solved: " + temp);
-            }
-            operators.pop();
-      } else if(divided[i].equals("(")){
-        operators.add(divided[i]);
-      } else if (divided[i].indexOf("log(") != -1){
-        solved.add(logCalc(divided[i]));
-      } else {
-        while (operators.len > 0 && getPriority(operators.get(-1)) >= getPriority(divided[i])){
-          String temp = operators.pop();
-              solved.add(temp);
-              System.out.println("Pushing into solved: " + temp);
-        }
-        operators.add(divided[i]);
-      }
-    }*/
+    }
     while (operators.len > 0){
       String temp = operators.pop();
       if (temp.equals("(") && operators.len > 0){
@@ -283,13 +209,7 @@ public class Parser implements Runnable{
       } else {
         solved.add(temp);
       }
-      //System.out.println("ending " + temp);
     }
-    /*System.out.print("solved: [");
-    for(int i = 0; i < solved.len; i++){
-      System.out.print(solved.get(i)+ ", ");
-    }
-     System.out.println("]");*/
     return solved;
   }
   public double calculate(Stack<String> RPNCalc){
@@ -297,7 +217,6 @@ public class Parser implements Runnable{
     double numA = 0;
     double numB = 0;
     String curr = "";
-     //if (RPNCalc.len < 2) return Double.parseDouble(RPNCalc.pop());
     for (int i = 0; i < RPNCalc.len; i++){
       curr = RPNCalc.get(i);
       if ((47 < (int) curr.charAt(0) && (int) curr.charAt(0) < 58) || (curr.length() > 1 && 47 < (int) curr.charAt(1) && (int) curr.charAt(1) < 58)){

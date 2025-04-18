@@ -80,7 +80,6 @@ public class TextManager {
                 prev = showUser.indexOf(toDelete, prev);
             }
         }
-        System.out.println(unformatted.toString());
     return showUser.toString();
     }
     public static String erase(){
@@ -106,10 +105,9 @@ public class TextManager {
         if (showUser.charAt(showUser.length() - 1) == ']') showUser.delete(showUser.length() - 2, showUser.length());
         showUser.delete(showUser.length() - delShowUser, showUser.length());
         i = showUser.length() - 1;
-        if (showUser.charAt(showUser.length() - 1) == ']' && showUser.charAt(showUser.length() - 2) != '['){
+        if (showUser.length > 0 && showUser.charAt(showUser.length() - 1) == ']' && showUser.charAt(showUser.length() - 2) != '['){
             showUser.delete(showUser.lastIndexOf("[", i), showUser.length());
         }
-        System.out.println(unformatted.toString());
         return showUser.toString();
     }
     public static void clear(){
@@ -123,7 +121,6 @@ public class TextManager {
     public static String updateColors(int start){
         int prev = start;
         for (int i = start; i < showUser.length; i++){
-            System.out.println(i);
             if (AlphabetManager.isValidAlphabetChar(showUser.charAt(i))){
                 prev = i;
                 while (AlphabetManager.isValidAlphabetChar(showUser.charAt(i))) i++;
@@ -132,10 +129,8 @@ public class TextManager {
                     i += 9;
                     showUser.insert(i, "[]");
                     i += 2;
-                    //System.out.println(showUser.toString() + "   " + showUser.charAt(i));
                     showUser.insert(i, ColorStyle.bracketColor);
                     i += 10;
-                    //System.out.println(showUser.toString() + "   " + showUser.charAt(i));
                     showUser.insert(i, "[]");
                     i += 1;
                 } else {
@@ -163,7 +158,6 @@ public class TextManager {
     public static String updateColors(int start, StringBuilder builder){
         int prev = start;
         for (int i = start; i < builder.length; i++){
-            System.out.println(i);
             if (AlphabetManager.isValidAlphabetChar(builder.charAt(i))){
                 prev = i;
                 while (i < builder.length && AlphabetManager.isValidAlphabetChar(builder.charAt(i))) i++;
@@ -172,10 +166,8 @@ public class TextManager {
                     i += 9;
                     builder.insert(i, "[]");
                     i += 2;
-                    System.out.println("guh");
                     builder.insert(i, ColorStyle.bracketColor);
                     i += 10;
-                    //System.out.println(showUser.toString() + "   " + showUser.charAt(i));
                     builder.insert(i, "[]");
                     i += 1;
                 } else {
@@ -183,17 +175,13 @@ public class TextManager {
                     i += 9;
                     builder.insert(i, "[]");
                     i += 1;
-                    System.out.println(builder.toString());
                 }
             } else if (builder.charAt(i) == '>'){
-                System.out.println("guh3");
-                System.out.println(i + "found a \">\"");
                 builder.insert(i, ColorStyle.bracketColor);
                 i += 10;
                 builder.insert(i, "[]");
                 i += 2;
             } else if (builder.charAt(i) == '°'){
-                System.out.println("guh4");
                 builder.insert(i, ColorStyle.intervalVarColor);
                 i += 10;
                 while ( i < builder.length && AlphabetManager.isValidAlphabetChar(builder.charAt(i))) i++;
