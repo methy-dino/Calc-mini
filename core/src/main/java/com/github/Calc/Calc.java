@@ -139,7 +139,6 @@ public class Calc extends ApplicationAdapter {
                     @Override
                     public void changed(ChangeEvent event, Actor actor) {
                         vars.deleteVar(i);
-                        vars.SaveVars();
                         deleteButton.remove();
                         var.remove();
                     }
@@ -271,7 +270,6 @@ public class Calc extends ApplicationAdapter {
                     @Override
                     public void changed(ChangeEvent event, Actor actor) {
                         funcs.deleteFunc(i);
-                        funcs.saveFunctions();
                         deleteButton.remove();
                         fnButton.remove();
                     }
@@ -633,7 +631,6 @@ public class Calc extends ApplicationAdapter {
                     normalNotation.setMaximumFractionDigits(8);
                     if (building == 1) {
                         vars.setVar(currName, String.valueOf(parser.compute(calculation)));
-                        vars.SaveVars();
                         results.setText(currName + " was declared");
                         currName = null;
                         building = 0;
@@ -646,7 +643,6 @@ public class Calc extends ApplicationAdapter {
                         currFuncData.clear();
                         stage.getActors().get(1).remove();
                         funcs.setFunc(currName, converted);
-                        funcs.saveFunctions();
                         currName = null;
                         building = 0;
                     } else {
@@ -745,13 +741,17 @@ public class Calc extends ApplicationAdapter {
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
 
-        if (stage.getHeight() > 0 && stage.getWidth() > 0) skin.getFont("default").getData().setScale((stage.getHeight() + stage.getWidth()) / 400);
-        UISetup();
+        if (stage.getHeight() > 0 && stage.getWidth() > 0){
+            skin.getFont("default").getData().setScale((stage.getHeight() + stage.getWidth()) / 400);
+            UISetup();
+        }
     }
 
     @Override
     public void dispose() {
         stage.dispose();
         skin.dispose();
+        funcs.saveFunctions();
+        vars.SaveVars();
     }
 }
