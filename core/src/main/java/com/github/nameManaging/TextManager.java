@@ -97,7 +97,22 @@ public class TextManager {
     public static String erase(){
         if (unformatted.length == 0) return "";
         int i = unformatted.length;
-        while ((AlphabetManager.isValidAlphabetChar(unformatted.charAt(i-1))) && i > 0){
+        if (unformatted.charAt(i-1) == '<'){
+            unformatted.delete(i-1, i);
+            int j = showUser.length() - 1;
+            if (showUser.length > 0 && showUser.charAt(j) == ']'){
+                showUser.delete(showUser.lastIndexOf("[", j), showUser.length());
+            }
+            showUser.delete(showUser.length() - 1, showUser.length());
+            if (showUser.length > 0 && showUser.charAt(showUser.length() - 1) == ']'){
+                showUser.delete(showUser.lastIndexOf("[", j), showUser.length());
+            }
+            if (unformatted.length == 0){
+                return showUser.toString();
+            }
+            i--;
+        }
+        while (i > 0 && (AlphabetManager.isValidAlphabetChar(unformatted.charAt(i-1)))){
             i--;
         }
         i = unformatted.length == i ? i-1 : i;
@@ -161,7 +176,7 @@ public class TextManager {
     }
     public static String updateColors(int start, StringBuilder builder){
         int prev = start;
-        for (int i = start; i < builder.length; i++){
+        for (int i = start; i < builder.length(); i++){
             if (AlphabetManager.isValidAlphabetChar(builder.charAt(i))){
                 prev = i;
                 while (i < builder.length && AlphabetManager.isValidAlphabetChar(builder.charAt(i))) i++;
