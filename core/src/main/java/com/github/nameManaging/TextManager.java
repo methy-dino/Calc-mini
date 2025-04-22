@@ -96,28 +96,20 @@ public class TextManager {
     }
     public static String erase(){
         if (unformatted.length == 0) return "";
-        int i = unformatted.length - 1;
-
-        if (AlphabetManager.isValidAlphabetChar(unformatted.charAt(i))) {
-
-        } else if (unformatted.charAt(i) == '>'){
-            int offset = 0;
-            while (AlphabetManager.isNumber(unformatted.charAt(i - offset))){
-                offset++;
-            }
-            if (unformatted.charAt(i - offset) == '<') {
-                i -= offset;
-            }
-        }
-        while ((AlphabetManager.isValidAlphabetChar(unformatted.charAt(i))) && i > 0){
+        int i = unformatted.length;
+        while ((AlphabetManager.isValidAlphabetChar(unformatted.charAt(i-1))) && i > 0){
             i--;
         }
+        i = unformatted.length == i ? i-1 : i;
         int delShowUser = unformatted.length() - i;
         unformatted.delete(i, unformatted.length());
-        if (showUser.charAt(showUser.length() - 1) == ']') showUser.delete(showUser.length() - 2, showUser.length());
+        i = showUser.length() - 1;
+        if (showUser.length > 0 && showUser.charAt(i) == ']'){
+            showUser.delete(showUser.lastIndexOf("[", i), showUser.length());
+        }
         showUser.delete(showUser.length() - delShowUser, showUser.length());
         i = showUser.length() - 1;
-        if (showUser.length > 0 && showUser.charAt(showUser.length() - 1) == ']' && showUser.charAt(showUser.length() - 2) != '['){
+        if (showUser.length > 0 && showUser.charAt(showUser.length() - 1) == ']'){
             showUser.delete(showUser.lastIndexOf("[", i), showUser.length());
         }
         return showUser.toString();
@@ -135,7 +127,7 @@ public class TextManager {
         for (int i = start; i < showUser.length; i++){
             if (AlphabetManager.isValidAlphabetChar(showUser.charAt(i))){
                 prev = i;
-                while (AlphabetManager.isValidAlphabetChar(showUser.charAt(i))) i++;
+                while (i < showUser.length() && AlphabetManager.isValidAlphabetChar(showUser.charAt(i))) i++;
                 if (i < showUser.length && showUser.charAt(i) == '<'){
                     showUser.insert(prev, ColorStyle.functionColor);
                     i += 9;
