@@ -724,6 +724,8 @@ public class Calc extends ApplicationAdapter {
         funcs = Gdx.app.getType() == ApplicationType.Android || Gdx.app.getType() == ApplicationType.iOS ? new FnStorage("calc", "functions", new Json()) : new FnStorage("CalcStorage/Functions.json", new Json());
         //funcs.setFunc("areaTrianEqui", "<0>^2*sqrt3/4", "lado");
         parser = new Parser(vars, funcs);
+        TextManager.vars = vars;
+        TextManager.funcs = funcs;
         //funcs.setFunc("areaHexa", "6*areaTrianEqui<<0>>", "lado");
         //sidelineParse.start();
         // TABLE FOR THE BASIC FUNCTIONS.

@@ -2,7 +2,7 @@ package com.github.nameManaging;
 
 import java.util.ArrayList;
 import com.github.nameManaging.AlphabetManager;
-
+import com.github.basics.*;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.utils.StringBuilder;
 //holy moly, I really need to find a better way to integrate tokens and stuff.
@@ -10,15 +10,27 @@ public class TextManager {
     static StringBuilder showUser = new StringBuilder();
     static StringBuilder unformatted = new StringBuilder(); // AKA ugly ass strings
     static int prevLen;
+    public static FnStorage funcs;
+    public static VarStorage vars;
     public static String update(char toAdd){
         showUser.append(toAdd);
         unformatted.append(toAdd);
         return updateColors(prevLen);
     }
+    public static boolean lastFnVar(){
+        int len = unformatted.length-1;
+        if (unformatted.charAt(len) == '>'){
+            return true;
+        }
+        while (len > -1 && AlphabetManager.isValidAlphabetChar(unformatted.charAt(len))){
+            len--;
+        }
+        return (vars.has(unformatted.substring(len, unformatted.length())));
+    }
     public static String update(String var){
         //showUser.append("[#7f78aa]");
         prevLen = showUser.length();
-        if (unformatted.length > 0 && AlphabetManager.isNumber(unformatted.charAt(unformatted.length() - 1))){
+        if (unformatted.length() > 0 && (AlphabetManager.isNumber(unformatted.charAt(unformatted.length() - 1)) || lastFnVar())){
             unformatted.append("*");
             showUser.append("*");
         }
@@ -36,7 +48,7 @@ public class TextManager {
     public static String addFunc(String function){
         //showUser.append("[#d0a343]");
         prevLen = showUser.length();
-        if (AlphabetManager.isNumber(unformatted.charAt(unformatted.length() - 1))){
+        if (unformatted.length() > 0 && (AlphabetManager.isNumber(unformatted.charAt(unformatted.length() - 1)) || lastFnVar())){
             unformatted.append("*");
             showUser.append("*");
         }
