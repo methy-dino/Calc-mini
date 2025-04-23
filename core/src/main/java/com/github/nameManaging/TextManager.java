@@ -105,7 +105,10 @@ public class TextManager {
             }
             showUser.delete(showUser.length() - 1, showUser.length());
             if (showUser.length > 0 && showUser.charAt(showUser.length() - 1) == ']'){
-                showUser.delete(showUser.lastIndexOf("[", j), showUser.length());
+                int lInd = showUser.lastIndexOf("[", j);
+                if (lInd < j - 3){
+                    showUser.delete(showUser.lastIndexOf("[", j), showUser.length());
+                }
             }
             if (unformatted.length == 0){
                 return showUser.toString();
@@ -125,7 +128,10 @@ public class TextManager {
         showUser.delete(showUser.length() - delShowUser, showUser.length());
         i = showUser.length() - 1;
         if (showUser.length > 0 && showUser.charAt(showUser.length() - 1) == ']'){
-            showUser.delete(showUser.lastIndexOf("[", i), showUser.length());
+            int lInd = showUser.lastIndexOf("[", i);
+                if (lInd < i - 3){
+                    showUser.delete(showUser.lastIndexOf("[", i), showUser.length());
+                }
         }
         return showUser.toString();
     }
