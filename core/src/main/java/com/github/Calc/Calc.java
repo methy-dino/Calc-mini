@@ -642,6 +642,7 @@ public class Calc extends ApplicationAdapter {
                         }
                         currFuncData.clear();
                         stage.getActors().get(1).remove();
+                        results.setText(currName + " was declared");
                         funcs.setFunc(currName, converted);
                         currName = null;
                         building = 0;
